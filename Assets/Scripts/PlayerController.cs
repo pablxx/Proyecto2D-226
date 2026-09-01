@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controlesJugador = new InputSystem_Actions();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
