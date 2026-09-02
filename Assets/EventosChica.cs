@@ -14,4 +14,15 @@ public class EventosChica : MonoBehaviour
         ctrlChica.disparando = false;
         ctrlChica.luzPistola.enabled = false;
     }
+
+    public void IniciarDesliz()
+    {
+        Debug.Log("evento desliz");
+        ctrlChica.IniciarDesliz();
+    }
+
+    public void FinalizarDesliz()
+    {
+        ctrlChica.FinalizarDesliz();
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -18,6 +19,16 @@ public class ControlChica : MonoBehaviour
     [SerializeField] GameObject proyectilObj;
     [SerializeField] Transform puntaPistola;
     [SerializeField] public Light2D luzPistola;
+
+
+    //variables para el salto
+    [SerializeField] LayerMask capaPiso;
+    [SerializeField] float distanciaRayo;
+    [SerializeField] Transform posPies;
+
+    [SerializeField] Collider2D colNormal;
+    [SerializeField] Collider2D colDeslizar;
+    [SerializeField] bool deslizando;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,6 +75,13 @@ public class ControlChica : MonoBehaviour
             miAnimador.SetTrigger("disparo");
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Deslizando");
+            deslizando = true;
+            miAnimador.SetBool("deslizando", deslizando);
+        }
+
         //actualizamos variables de salto en el animador
         miAnimador.SetBool("pisando", pisando);
         miAnimador.SetFloat("velY", miCuerpo.linearVelocityY);
@@ -83,4 +101,41 @@ public class ControlChica : MonoBehaviour
                                             transform.localScale.y,
                                             transform.localScale.z);
     }
+
+    private void FixedUpdate()
+    {
+        DetectarPiso();
+    }
+
+    private void DetectarPiso()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(posPies.position, Vector2.down, distanciaRayo, capaPiso);
+
+        if (hit)
+            pisando = true;
+        else
+            pisando = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(posPies.position, Vector2.down * distanciaRayo);
+    }
+
+    public void IniciarDesliz()
+    {
+        Debug.Log("iniciando desliz");
+        deslizando = true;
+        colNormal.enabled = false;
+        colDeslizar.enabled = true;
+    }
+
+    public void FinalizarDesliz()
+    {
+        deslizando = false;
+        colNormal.enabled = true;
+        colDeslizar.enabled = false;
+    }
+
 }

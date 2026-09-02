@@ -7,6 +7,7 @@ public class Portal : MonoBehaviour
     private void Awake()
     {
         escenaObjetivo = gameObject.name;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
