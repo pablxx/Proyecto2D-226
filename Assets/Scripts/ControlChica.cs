@@ -29,6 +29,8 @@ public class ControlChica : MonoBehaviour
     [SerializeField] Collider2D colNormal;
     [SerializeField] Collider2D colDeslizar;
     [SerializeField] bool deslizando;
+    [SerializeField] float tiempoDeslizBase;
+    [SerializeField] float contadorTiempoDesliz;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +45,32 @@ public class ControlChica : MonoBehaviour
             return;
 
         float entradaX = Input.GetAxis("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.C) && !deslizando)
+        {
+            Debug.Log("Deslizando");
+            deslizando = true;
+            miAnimador.SetBool("deslizando", deslizando);
+            contadorTiempoDesliz = 0;
+        }
+
+        if (contadorTiempoDesliz <= tiempoDeslizBase && deslizando)
+        {
+            miCuerpo.linearVelocityX = transform.localScale.x * velocidad * 2f;
+            contadorTiempoDesliz += Time.deltaTime;
+        }
+        else
+        {
+            deslizando = false;
+            miCuerpo.linearVelocityX = 0f;
+            miAnimador.SetBool("deslizando", deslizando);
+            FinalizarDesliz();
+        }
+
+        if (deslizando)
+            return;
+
+        
         //Debug.Log("el jugador esta presionando " + entradaX);
         //Debug.Log("tiempo delta " + Time.deltaTime);
 
@@ -75,13 +103,6 @@ public class ControlChica : MonoBehaviour
             miAnimador.SetTrigger("disparo");
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("Deslizando");
-            deslizando = true;
-            miAnimador.SetBool("deslizando", deslizando);
-        }
-
         //actualizamos variables de salto en el animador
         miAnimador.SetBool("pisando", pisando);
         miAnimador.SetFloat("velY", miCuerpo.linearVelocityY);
@@ -101,6 +122,7 @@ public class ControlChica : MonoBehaviour
                                             transform.localScale.y,
                                             transform.localScale.z);
     }
+
 
     private void FixedUpdate()
     {
