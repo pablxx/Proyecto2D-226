@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CasaTutorial.unity
     guid: 75614210111b738438a948a2fae0d00b
   - enabled: 1
+    path: Assets/Scenes/EscenaMario2.unity
+    guid: 488a799f8f4b08c4fb067810b67c7f5c
+  - enabled: 1
     path: Assets/Scenes/470 - Prototipo.unity
     guid: 1e52aee4a73526f44ae31e286675740e
   m_configObjects: {}
