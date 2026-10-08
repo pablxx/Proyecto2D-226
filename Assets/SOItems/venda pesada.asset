@@ -15,7 +15,7 @@ MonoBehaviour:
   itemNombre: venda pesada
   itemDescripcion: Esta venda es una venda de cura mayor
   itemIcono: {fileID: 7648373262874780476, guid: 2aded279d0f56ea479e423814a3240be, type: 3}
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 5383670595562693024, guid: ac894096abf38484e915b183c8b6de03, type: 3}
   tipoConsumible: 0
   precioItem: 10
   cantidadEfecto: 50
