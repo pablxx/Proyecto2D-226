@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Nuevo Personaje", menuName = "MOBA/Personaje")]
-public class DatosPersonaje : ScriptableObject
+[CreateAssetMenu(fileName = "Nuevo Heroe", menuName = "MOBA/Heroe")]
+public class DatosHeroe : ScriptableObject
 {
     public string nombre;
     public string alias;

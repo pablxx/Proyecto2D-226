@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cd95ccd8bde3e34490a4381f51a72d9, type: 3}
-  m_Name: Warlock
+  m_Name: Nevermore
   m_EditorClassIdentifier: 
-  nombre: Demnok Lannik
-  alias: Warlock
-  faccion: 1
+  nombre: 10
+  alias: 10
+  faccion: 0
   tipoAtaque: 0
-  atributoPrincipal: 2
-  manaBase: 0
-  saludBase: 0
+  atributoPrincipal: 0
+  manaBase: 10
+  saludBase: 10
   estadisticas:
-    fuerza: 18
-    gananciaFuerza: 2.5
-    agilidad: 10
+    fuerza: 10
+    gananciaFuerza: 10
+    agilidad: 1
     gananciaAgilidad: 1
-    inteligencia: 24
-    gananciaInteligencia: 2.7
-  imagen: {fileID: 0}
-  prefab: {fileID: 0}
+    inteligencia: 1
+    gananciaInteligencia: 0
+  imagen: {fileID: -3214346651591119193, guid: d3c8f4c144b363c40926d39c387380a8, type: 3}
+  prefab: {fileID: 2660807478688416809, guid: 342774da13ab08a47b67673ae1535dd1, type: 3}
