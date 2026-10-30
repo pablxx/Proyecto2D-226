@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Heroe : MonoBehaviour, IHabilidades
+public class Heroe : MonoBehaviour
 {
     public DatosHeroe datosHeroe;
     
@@ -8,6 +8,9 @@ public class Heroe : MonoBehaviour, IHabilidades
     {
         GameObject nuevoHeroe = Instantiate(datosHeroe.prefab, transform.position, Quaternion.identity);
         nuevoHeroe.transform.SetParent(transform);
+
+
     }
 
 }
+

@@ -4,16 +4,17 @@ using UnityEngine.Pool;
 public class PoolCreeps : MonoBehaviour
 {
     public static PoolCreeps Instance { get; private set; }
-    public ObjectPool<GameObject> creepPoolMelee;
-    public ObjectPool<GameObject> creepPoolRango;
-    public ObjectPool<GameObject> creepPoolCatapulta;
+    public ObjectPool<GameObject> creepPool;
+    //public ObjectPool<GameObject> creepPoolRango;
+    //public ObjectPool<GameObject> creepPoolCatapulta;
 
-    public GameObject creepMeleePrefab;
+    [SerializeField] CreepPoolInfo[] creepsInfo = new CreepPoolInfo[3];
+
+    //public GameObject creepMeleePrefab;
     [SerializeField]
     private int cantidadMinima = 30;
     [SerializeField]
     private int cantidadMaxima = 60;
-
 
     //EJEMPLO
     GameObject creepActual;
@@ -30,26 +31,36 @@ public class PoolCreeps : MonoBehaviour
             return;
         }
 
-        // Initialize pool early so other Awake/Start can use it
-        creepPoolMelee = new ObjectPool<GameObject>(CrearCreep,
+        CargarCantidades();
+
+        creepPool = new ObjectPool<GameObject>(CrearCreep,
                                                     ObtenerCreep,
                                                     DevolverCreep,
                                                     DestruirCreep,
                                                     true, cantidadMinima, cantidadMaxima);
-
-        
     }
+
+    //cargamos todas las cantidades de creeps sumadas
+    void CargarCantidades()
+    {
+        for (int i = 1; i < creepsInfo.Length; i++)
+        {
+            cantidadMinima += creepsInfo[i].cantidadMinima;
+            cantidadMaxima += creepsInfo[i].cantidadMaxima;
+        }
+    }
+
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            creepActual = creepPoolMelee.Get();
+            creepActual = creepPool.Get();
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            creepPoolMelee.Release(creepActual);
+            creepPool.Release(creepActual);
         }
     }
 
@@ -62,15 +73,21 @@ public class PoolCreeps : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            var nuevoCreep = creepPoolMelee.Get();
+            var nuevoCreep = creepPool.Get();
             nuevoCreep.SetActive(false);
         }
     }
 
     private GameObject CrearCreep()
     {
-        GameObject creep = Instantiate(creepMeleePrefab, transform.position, transform.rotation);
-        creep.SetActive(false);
+        GameObject creep = null;
+
+        foreach (var creepInfo in creepsInfo)
+        {
+            creep = Instantiate(creepInfo.creepPrefab, transform.position, transform.rotation);
+            creep.SetActive(false);
+        }
+        
         return creep;
     }
 
@@ -93,4 +110,12 @@ public class PoolCreeps : MonoBehaviour
     {
         Destroy(creep);
     }
+}
+
+[System.Serializable]
+public class CreepPoolInfo
+{
+    public GameObject creepPrefab;
+    public int cantidadMinima;
+    public int cantidadMaxima;
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-public class ControlPersonaje : MonoBehaviour
+public class HeroeMovimiento : MonoBehaviour
 {
     private NavMeshAgent agente;
     private InputSystem_Actions inputActions;

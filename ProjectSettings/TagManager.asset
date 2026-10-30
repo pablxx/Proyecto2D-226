@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - piso
-  - escalera
+  - aliado
+  - enemigo
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - player
   - destructible
   - creep
-  - 
+  - unidades
   - 
   - 
   - 

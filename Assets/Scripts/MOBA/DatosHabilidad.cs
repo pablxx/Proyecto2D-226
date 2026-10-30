@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class Habilidad : MonoBehaviour
+[CreateAssetMenu(fileName = "Nueva Habilidad", menuName = "MOBA/Habilidad")]
+public abstract class DatosHabilidad : ScriptableObject
 {
     public string nombre;
     public float cooldown;
@@ -13,15 +14,17 @@ public class Habilidad : MonoBehaviour
     public TipoHabilidad tipoHabilidad;
     public TipoEfecto tipoEfecto;
 
-    public void EjecutarHabilidad() {
-        Debug.Log($"Ejecutando habilidad: {nombre}");
-    }
+    public abstract void EjecutarHabilidad();
+    public abstract void DetenerHabilidad();
+    public abstract void HabilidadPasiva();
 }
 
 public enum TipoHabilidad
 {
     Activa,
-    Pasiva
+    Instantanea,
+    PasivaContinua,
+    PasivaTrigger
 }
 
 public enum TipoEfecto
